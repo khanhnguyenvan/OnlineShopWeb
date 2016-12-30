@@ -19,7 +19,9 @@ namespace TeduShop.Model.Models
         public string Name { get; set; }
         public string Content { get; set; }
         [Column(TypeName = "varchar")]
+        [MaxLength(50)]
         public string Alias { get; set; }
+        [MaxLength(256)]
         public string Description { get; set; }
         public int? ParentId { get; set; }
         public int? DisplayOrder { get; set; }
