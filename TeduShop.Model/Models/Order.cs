@@ -41,6 +41,7 @@ namespace TeduShop.Model.Models
 
         public DateTime? CreatedDate { set; get; }
         public string CreatedBy { set; get; }
+        [Required]
         public string PaymentStatus { set; get; }
         public bool Status { set; get; }
 
