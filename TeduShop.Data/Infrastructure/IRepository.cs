@@ -13,7 +13,7 @@ namespace TeduShop.Data.Infrastructure
         void Update(T entity);
         void Delete(T entity);
         void DeleteMulti(Expression<Func<T, bool>> where);
-        T GetById(int id);
+        T GetSingleById(int id);
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
 
         IQueryable<T> GetAll(string[] includes = null);

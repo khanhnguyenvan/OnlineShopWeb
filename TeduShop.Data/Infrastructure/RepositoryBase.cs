@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace TeduShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         private TeduShopDbContext _dbContext;
         private readonly DbSet<T> _dbSet;
@@ -16,7 +16,10 @@ namespace TeduShop.Data.Infrastructure
             private set;
         }
 
-        protected TeduShopDbContext DbContext => _dbContext ?? (_dbContext = DbFactory.Init());
+        protected TeduShopDbContext DbContext
+        {
+            get { return _dbContext ?? (_dbContext = new TeduShopDbContext()); }
+        }
 
         protected RepositoryBase(IDbFactory dbFactory)
         {
@@ -72,7 +75,7 @@ namespace TeduShop.Data.Infrastructure
                 foreach (var include in includes.Skip(1))
                 {
                     query = query.Include(include);
-                   
+
                 }
                 return query.AsQueryable();
             }
@@ -121,5 +124,7 @@ namespace TeduShop.Data.Infrastructure
         {
             return _dbContext.Set<T>().Count<T>(predicate) > 0;
         }
+
+
     }
 }

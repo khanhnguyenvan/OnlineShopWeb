@@ -24,15 +24,17 @@ namespace TeduShop.Model.Models
         public decimal Price { get; set; }
         
         public string Image { get; set; }
-        [ForeignKey("CategoryId")]
+     
         public int CategoryId { get; set; }
-        public XElement MoreImages { get; set; }
+        [Column(TypeName = "xml")]
+        public string MoreImages { get; set; }
         public decimal? PromotionPrice { get; set; }
         public int? Warranty { get; set; }
         public string Content { get; set; }
         public bool? HomeFlag { get; set; }
         public bool? HotFlage { get; set; }
         public int? ViewCount { get; set; }
+        [ForeignKey("CategoryId")]
         public virtual ProductCategory ProductCategory { get; set; }
     }
 }
