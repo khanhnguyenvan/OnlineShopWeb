@@ -17,14 +17,15 @@ namespace TeduShop.Service
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
         Post GetById(int id);
-        IEnumerable<Post> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow);
+        IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
+        IEnumerable<Post> GetAllByCategoryPaging(int categoryId,int page,int pageSize,int totalRow);
         void SaveChanges();
 
     }
     public class PostService : IPostService
     {
         private readonly IPostRepository _postRepository;
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         /// <summary>
         ///    khởi tạo gián tiếp các field, bằng cách tiêm vào constructor các interface
         /// 
@@ -38,17 +39,17 @@ namespace TeduShop.Service
         }
         public void Add(Post post)
         {
-           _postRepository.Add(post);
+            _postRepository.Add(post);
         }
 
         public void Update(Post post)
         {
-          _postRepository.Update(post);
+            _postRepository.Update(post);
         }
 
         public void Delete(int id)
         {
-          _postRepository.Delete(id);
+            _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
@@ -58,7 +59,7 @@ namespace TeduShop.Service
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
         {
-            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            throw new NotImplementedException();
         }
 
         public Post GetById(int id)
@@ -68,12 +69,18 @@ namespace TeduShop.Service
 
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
-            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            return _postRepository.GetAllTag(tag, page, pageSize, out totalRow);
         }
 
         public void SaveChanges()
         {
-          _unitOfWork.Commit();
+            _unitOfWork.Commit();
+        }
+
+        public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, int totalRow)
+        {
+            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryId == categoryId, out totalRow, page,
+                pageSize, new string[] {"PostCategory"});
         }
     }
 }
