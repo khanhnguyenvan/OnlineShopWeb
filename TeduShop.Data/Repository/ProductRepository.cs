@@ -8,7 +8,7 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repository
 {
-    interface IProductRepository
+    interface IProductRepository:IRepository<Product>
     {
 
     }

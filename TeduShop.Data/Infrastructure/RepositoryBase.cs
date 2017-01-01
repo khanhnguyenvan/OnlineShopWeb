@@ -125,6 +125,15 @@ namespace TeduShop.Data.Infrastructure
             return _dbContext.Set<T>().Count<T>(predicate) > 0;
         }
 
+        public void Delete(int id)
+        {
+            var entity = _dbSet.Find(id);
 
+            if (entity != null)
+            {
+
+                _dbSet.Remove(entity);
+            }
+        }
     }
 }

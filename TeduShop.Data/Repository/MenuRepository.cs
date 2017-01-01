@@ -8,6 +8,10 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repository
 {
+    public interface IMenuRepository : IRepository<Menu>
+    {
+
+    }
     public class MenuRepository : RepositoryBase<Menu>
     {
         public MenuRepository(IDbFactory dbFactory) : base(dbFactory)

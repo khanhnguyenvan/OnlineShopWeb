@@ -8,7 +8,11 @@ using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repository
 {
-  public  class PageRepository : RepositoryBase<Page>
+    public interface IPageRepository : IRepository<Page>
+    {
+
+    }
+    public  class PageRepository : RepositoryBase<Page>
     {
         public PageRepository(IDbFactory dbFactory) : base(dbFactory)
         {
