@@ -14,7 +14,7 @@ namespace TeduShop.Data.Infrastructure
 
         public UnitOfWork(IDbFactory dbFactory)
         {
-            _dbFactory = dbFactory;
+           this._dbFactory = dbFactory;
         }
 
         public TeduShopDbContext DbContext
@@ -27,7 +27,7 @@ namespace TeduShop.Data.Infrastructure
         }
         public void Commit()
         {
-            _dbContext.SaveChanges();
+            DbContext.SaveChanges();
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TeduShop.Data.Infrastructure
+﻿namespace TeduShop.Data.Infrastructure
 {
     public class DbFactory : Disposeable, IDbFactory
     {
@@ -16,9 +10,10 @@ namespace TeduShop.Data.Infrastructure
 
         protected override void DisposeCore()
         {
-            if(_dbContext!=null)
+            if (_dbContext != null)
                 _dbContext.Dispose();
             //_dbContext?.Dispose();
+
         }
     }
 }

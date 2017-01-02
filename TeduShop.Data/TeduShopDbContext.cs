@@ -5,7 +5,7 @@ namespace TeduShop.Data
 {
     public class TeduShopDbContext : DbContext
     {
-        public TeduShopDbContext() : base("name=TeduShopDbContext")
+        public TeduShopDbContext() : base("TeduShopDbContext")
         {
 
         }
